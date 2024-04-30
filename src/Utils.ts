@@ -21,10 +21,15 @@ export default class Utils {
         return matches;
     }
 
-    static getEnv(key: string): string {
+    static getEnvNumber(key: string, defaultValue?: number) : number {
+        return Number.parseInt(this.getEnv(key, ""+defaultValue))
+    }
+    static getEnv(key: string, defaultValue?: string): string {
         const value = process.env[key]
         if (value)
             return value;
+        else if(defaultValue)
+            return defaultValue
         throw new Error(`${key} is not in env variables!`)
     }
 }
